@@ -42,19 +42,19 @@ function App() {
     setTodos(newTodos);
     setInputValue("");
     showAlert(true, "item deleted");
-    editObj.current.focus();
+    // editObj.current.focus();
   }
 
   function handleClearList() {
     setTodos([]);
     showAlert(true, "list cleared");
-    editObj.current.focus();
+    // editObj.current.focus();
   }
 
   function handleEditItem(index) {
     setEditIndex(index);
     setInputValue(todos[index]);
-    editObj.current.focus();
+    // editObj.current.focus();
   }
 
   function showAlert(show = false, msg = "") {
@@ -75,7 +75,7 @@ function App() {
       setInputValue("");
       setEditIndex(null);
       showAlert(true, "item changed");
-      editObj.current.focus();
+      // editObj.current.focus();
     }
   }
 
@@ -93,7 +93,9 @@ function App() {
           )}
         </div>
 
-        <h1 className="text-4xl font-semibold tracking-tighter">Todo List</h1>
+        <h1 className="sm:text-4xl text-3xl font-semibold tracking-tighter">
+          Todo List
+        </h1>
 
         <form
           className="flex gap-2 bg-slate-200 p-2 rounded w-full"
@@ -104,7 +106,7 @@ function App() {
             className="bg-slate-200 w-full outline-none px-4"
             value={inputValue}
             onChange={handleInputChange}
-            autoFocus
+            // autoFocus
             ref={editObj}
           />
           <button
