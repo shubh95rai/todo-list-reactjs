@@ -12,7 +12,7 @@ const dummyTodos = [
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState([...dummyTodos]);
+  const [todos, setTodos] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: "" });
 
@@ -20,6 +20,11 @@ function App() {
 
   useEffect(() => {
     const storedTodos = localStorage.getItem("todos");
+    const hasModifiedTodos = localStorage.getItem("hasModifiedTodos");
+
+    if (!storedTodos && !hasModifiedTodos) {
+      setTodos([...dummyTodos]);
+    }
 
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
@@ -28,6 +33,10 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
+
+    if (!localStorage.getItem("hasModifiedTodos")) {
+      localStorage.setItem("hasModifiedTodos", true);
+    }
   }, [todos]);
 
   useEffect(() => {
@@ -89,10 +98,10 @@ function App() {
 
   return (
     <div
-      className="font-inter min-h-[100dvh] text-slate-600 flex justify-center items-start py-4 bg-slate-100 select-none px-4"
+      className="font-inter min-h-[100dvh] text-slate-600 flex justify-center items-start bg-slate-50 select-none p-4"
       spellCheck="false"
     >
-      <main className="bg-whit p- rounded flex flex-col gap-4 items-center md:max-w-2xl max-w-xl w-full">
+      <main className="rounded flex flex-col gap-4 items-center md:max-w-2xl max-w-xl w-full">
         <div className="w-full h-7">
           {alert.show && (
             <p className="bg-slate-200 text-slate-600 py-1 rounded w-full text-center capitalize tracking-widest text-sm font-medium">
@@ -114,6 +123,7 @@ function App() {
             className="bg-slate-200 w-full outline-none px-4"
             value={inputValue}
             onChange={handleInputChange}
+            placeholder="Buy groceries..."
             // autoFocus
             ref={editObj}
           />
