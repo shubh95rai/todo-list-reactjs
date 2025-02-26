@@ -54,7 +54,7 @@ function App() {
   function handleEditItem(index) {
     setEditIndex(index);
     setInputValue(todos[index]);
-    // editObj.current.focus();
+    editObj.current.focus();
   }
 
   function showAlert(show = false, msg = "") {
