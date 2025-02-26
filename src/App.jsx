@@ -2,9 +2,17 @@ import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { useEffect, useState, useRef } from "react";
 
+const dummyTodos = [
+  "🏋️ Go to the gym at 6 PM",
+  "📚 Read 20 pages of a book",
+  "✉️ Reply to pending emails",
+  "🧹 Clean up the workspace",
+  "🎯 Plan next week's goals",
+];
+
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([...dummyTodos]);
   const [editIndex, setEditIndex] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: "" });
 
@@ -81,10 +89,10 @@ function App() {
 
   return (
     <div
-      className="font-inter min-h-screen text-slate-600 flex justify-center items-start py-20 bg-slate-200 select-none px-4"
+      className="font-inter min-h-[100dvh] text-slate-600 flex justify-center items-start py-4 bg-slate-100 select-none px-4"
       spellCheck="false"
     >
-      <main className="bg-white p-8 rounded flex flex-col gap-4 items-center shadow-lg  md:max-w-2xl max-w-xl  w-full">
+      <main className="bg-whit p- rounded flex flex-col gap-4 items-center md:max-w-2xl max-w-xl w-full">
         <div className="w-full h-7">
           {alert.show && (
             <p className="bg-slate-200 text-slate-600 py-1 rounded w-full text-center capitalize tracking-widest text-sm font-medium">
